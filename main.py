@@ -12,9 +12,24 @@ ENTRY: str = (
 )
 
 
+def get_entry_length(text: str = ENTRY) -> int:
+    """Return character length of the entry string.
+
+    Args:
+        text: The commit message entry string to measure.
+
+    Returns:
+        The total count of characters in text.
+    """
+    return len(text)
+
+
 def validate_entry(text: str = ENTRY) -> None:
     """Assert entry conforms strictly to competition gate rules."""
     assert isinstance(text, str), "Entry must be a string"
+    assert get_entry_length(text) == 134, (
+        f"Entry length ({get_entry_length(text)}) must equal exactly 134 characters"
+    )
     assert 1 <= len(text) <= 139, (
         f"Entry length ({len(text)}) must be between 1 and 139 characters"
     )
